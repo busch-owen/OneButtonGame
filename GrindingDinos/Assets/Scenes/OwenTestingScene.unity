@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 1706463220}
-  boxSize: {x: 4, y: 0.5}
+  boxSize: {x: 4, y: 0.2}
   castDistance: 2
   groundLayer:
     serializedVersion: 2

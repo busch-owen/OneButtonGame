@@ -10,17 +10,22 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] Vector2 boxSize;
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
+
+    private PlayerAnimationController _animationController;
+    
     // Start is called before the first frame update
     void Start()
     {
+        _animationController = GetComponentInChildren<PlayerAnimationController>();
         var inputListener = FindObjectOfType<PlayerInputs>();
         inputListener.RegisterListener(this);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         isGrounded();
+        _animationController.ChangeGroundState(isGrounded());
     }
     public void ButtonHeld(ButtonInfo heldInfo)
     {
@@ -32,6 +37,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         if(isGrounded())
         {
             Debug.Log("boing");
+            _animationController.PlayJumpAnimation();
             rigidBody.velocity = new Vector2(0.0f, jumpHeight);
         }
         
@@ -52,7 +58,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
             Debug.Log("Not Grounded");
             return false;
         }
-            
     }
     private void OnDrawGizmos()
     {
