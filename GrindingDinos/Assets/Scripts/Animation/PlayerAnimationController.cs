@@ -6,8 +6,9 @@ public class PlayerAnimationController : MonoBehaviour
     
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int Push = Animator.StringToHash("Push");
-    private static readonly int Land = Animator.StringToHash("Land");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
+    private static readonly int Kickflip = Animator.StringToHash("Kickflip");
+    private static readonly int Shuvit = Animator.StringToHash("Shuvit");
 
     private void Awake()
     {
@@ -30,5 +31,15 @@ public class PlayerAnimationController : MonoBehaviour
     public void ChangeGroundState(bool state)
     {
         _animator.SetBool(Grounded, state);
+    }
+    
+    public void PlayKickflipAnimation() 
+    {
+        _animator.SetTrigger(Kickflip);
+    }
+
+    public void PlayShuvitAnimation()
+    {
+        _animator.SetTrigger(Shuvit);
     }
 }

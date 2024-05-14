@@ -12,10 +12,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] LayerMask groundLayer;
 
     private PlayerAnimationController _animationController;
+
+    private PlayerTrickController _playerTrickController;
     
     // Start is called before the first frame update
     void Start()
     {
+        _playerTrickController = GetComponent<PlayerTrickController>();
         _animationController = GetComponentInChildren<PlayerAnimationController>();
         var inputListener = FindObjectOfType<PlayerInputs>();
         inputListener.RegisterListener(this);
@@ -29,23 +32,34 @@ public class PlayerController : MonoBehaviour, IButtonListener
     }
     public void ButtonHeld(ButtonInfo heldInfo)
     {
-        //grind?
+        if (isGrounded())
+        {
+            return;
+        }
+        
+        if (heldInfo.TimeHeld() >= _playerTrickController.ShuvitHoldTime)
+        {
+            _playerTrickController.PopShuv();
+        }
     }
     public void ButtonPressed(ButtonInfo pressedInfo)
     {
         //jump
-        if(isGrounded())
+        if(!isGrounded())
         {
-            Debug.Log("boing");
-            _animationController.PlayJumpAnimation();
-            rigidBody.velocity = new Vector2(0.0f, jumpHeight);
+            _playerTrickController.Kickflip();
+            return;
         }
         
+        Debug.Log("boing");
+        _animationController.PlayJumpAnimation();
+        rigidBody.velocity = new Vector2(0.0f, jumpHeight);
     }
     public void ButtonReleased(ButtonInfo releasedInfo)
     {
 
     }
+
     public bool isGrounded()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
@@ -53,12 +67,11 @@ public class PlayerController : MonoBehaviour, IButtonListener
             Debug.Log("Grounded");
             return true;
         }
-        else
-        {
-            Debug.Log("Not Grounded");
-            return false;
-        }
+
+        Debug.Log("Not Grounded");
+        return false;
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
