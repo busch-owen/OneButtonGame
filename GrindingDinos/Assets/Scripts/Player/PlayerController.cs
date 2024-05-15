@@ -2,17 +2,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IButtonListener
 {
+    
+    [Header("Player Physics Attributes")]
     [SerializeField] Rigidbody2D rigidBody;
-    float jumpHeight = 10.0f;
+    [SerializeField] float jumpHeight = 10.0f;
     //raycast for grounded
+    
+    [Space(10f)]
+    [Header("Ground Detection Attributes")]
     [SerializeField] Vector2 boxSize;
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
 
+    //Controllers and Managers
     private PlayerAnimationController _animationController;
-
     private PlayerTrickController _playerTrickController;
-
     private GameManager _gameManager;
     
     // Start is called before the first frame update
@@ -59,7 +63,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
             return;
         }
         
-        Debug.Log("boing");
         _animationController.PlayJumpAnimation();
         rigidBody.velocity = new Vector2(0.0f, jumpHeight);
     }
@@ -72,11 +75,9 @@ public class PlayerController : MonoBehaviour, IButtonListener
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
         {
-            Debug.Log("Grounded");
             return true;
         }
-
-        Debug.Log("Not Grounded");
+        
         return false;
     }
 

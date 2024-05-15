@@ -4,6 +4,7 @@ public class PlayerAnimationController : MonoBehaviour
 {
     private Animator _animator;
     
+    //Storing animator state values here
     private static readonly int Jump = Animator.StringToHash("Jump");
     private static readonly int Push = Animator.StringToHash("Push");
     private static readonly int Grounded = Animator.StringToHash("Grounded");
