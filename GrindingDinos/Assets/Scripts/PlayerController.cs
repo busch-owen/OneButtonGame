@@ -27,10 +27,12 @@ public class PlayerController : MonoBehaviour, IButtonListener
         isGrounded();
         _animationController.ChangeGroundState(isGrounded());
     }
+    
     public void ButtonHeld(ButtonInfo heldInfo)
     {
         //grind?
     }
+
     public void ButtonPressed(ButtonInfo pressedInfo)
     {
         //jump
@@ -42,10 +44,12 @@ public class PlayerController : MonoBehaviour, IButtonListener
         }
         
     }
+
     public void ButtonReleased(ButtonInfo releasedInfo)
     {
 
     }
+
     public bool isGrounded()
     {
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
@@ -61,6 +65,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
     }
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireCube(transform.position-transform.up * castDistance, boxSize);
+        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 }
