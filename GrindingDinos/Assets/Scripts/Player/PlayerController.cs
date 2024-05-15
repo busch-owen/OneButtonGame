@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IButtonListener
@@ -18,10 +19,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     private PlayerAnimationController _animationController;
     private PlayerTrickController _playerTrickController;
     private GameManager _gameManager;
+
+    private bool _isDead;
     
     // Start is called before the first frame update
     void Start()
     {
+        _isDead = false;
         _gameManager = FindObjectOfType<GameManager>();
         _playerTrickController = GetComponent<PlayerTrickController>();
         _animationController = GetComponentInChildren<PlayerAnimationController>();
@@ -49,6 +53,16 @@ public class PlayerController : MonoBehaviour, IButtonListener
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Obstacle"))
+        {
+            _gameManager.DeathSequence();
+            Debug.Log("I ded");
+            _isDead = true;
+        }
+    }
+
     public void ButtonPressed(ButtonInfo pressedInfo)
     {
         if (!_gameManager.GameStarted)
@@ -56,6 +70,11 @@ public class PlayerController : MonoBehaviour, IButtonListener
             _gameManager.StartGame();
             _animationController.TransitionToRun();
             return;
+        }
+
+        if (_isDead)
+        {
+            _gameManager.RestartGame();
         }
         
         //jump

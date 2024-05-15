@@ -1,22 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class GameManager : Singleton<GameManager>
 {
-    public int PlayerLives { get; private set; }
-    
     public bool GameStarted { get; private set; }
 
-    public void TakeDamage(int damage)
+    private SceneController _sceneController;
+    private UIManager _uiManager;
+
+    private void Awake()
     {
-        PlayerLives -= damage;
+        _sceneController = FindObjectOfType<SceneController>();
+        _uiManager = FindObjectOfType<UIManager>();
     }
 
     public void StartGame()
     {
         GameStarted = true;
     }
-    
+
+    public void DeathSequence()
+    {
+        _uiManager.OpenDeathMenu();
+    }
+
+    public void RestartGame()
+    {
+        //All this will do for now is reload the scene, potentially we could add a high score system or something of the sort.
+        _sceneController.ReloadCurrentScene();
+    }
 }
