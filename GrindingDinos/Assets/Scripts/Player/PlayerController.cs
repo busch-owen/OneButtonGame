@@ -14,10 +14,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     private PlayerAnimationController _animationController;
 
     private PlayerTrickController _playerTrickController;
+
+    private GameManager _gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
+        _gameManager = FindObjectOfType<GameManager>();
         _playerTrickController = GetComponent<PlayerTrickController>();
         _animationController = GetComponentInChildren<PlayerAnimationController>();
         var inputListener = FindObjectOfType<PlayerInputs>();
@@ -44,6 +47,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     }
     public void ButtonPressed(ButtonInfo pressedInfo)
     {
+        if (!_gameManager.GameStarted)
+        {
+            _gameManager.StartGame();
+            _animationController.TransitionToRun();
+            return;
+        }
+        
         //jump
         if(!isGrounded())
         {

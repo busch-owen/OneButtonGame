@@ -9,6 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
     private static readonly int Grounded = Animator.StringToHash("Grounded");
     private static readonly int Kickflip = Animator.StringToHash("Kickflip");
     private static readonly int Shuvit = Animator.StringToHash("Shuvit");
+    private static readonly int GameStarted = Animator.StringToHash("GameStarted");
 
     private void Awake()
     {
@@ -41,5 +42,10 @@ public class PlayerAnimationController : MonoBehaviour
     public void PlayShuvitAnimation()
     {
         _animator.SetTrigger(Shuvit);
+    }
+
+    public void TransitionToRun()
+    {
+        _animator.SetBool(GameStarted, true);
     }
 }
