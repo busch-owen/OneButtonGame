@@ -6,9 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public int PlayerLives { get; private set; }
+    
+    public bool GameStarted { get; private set; }
 
     public void TakeDamage(int damage)
     {
         PlayerLives -= damage;
     }
+
+    public void StartGame()
+    {
+        GameStarted = true;
+    }
+    
 }
