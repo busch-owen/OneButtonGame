@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,6 +71,12 @@ public class PlayerInputs : MonoBehaviour
         }
         
     }
+
+    private void OnDestroy()
+    {
+        _gameInputs.Disable();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
