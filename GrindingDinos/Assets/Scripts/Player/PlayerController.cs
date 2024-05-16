@@ -9,8 +9,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] float jumpHeight = 10.0f;
     //raycast for grounded
     
-    [Space(10f)]
-    [Header("Ground Detection Attributes")]
+    [Space(10f), Header("Ground Detection Attributes")]
     [SerializeField] Vector2 boxSize;
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
@@ -36,13 +35,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     // Update is called once per frame
     private void Update()
     {
-        isGrounded();
-        _animationController.ChangeGroundState(isGrounded());
+        IsGrounded();
+        _animationController.ChangeGroundState(IsGrounded());
     }
     
     public void ButtonHeld(ButtonInfo heldInfo)
     {
-        if (isGrounded())
+        if (IsGrounded())
         {
             return;
         }
@@ -78,7 +77,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         }
         
         //jump
-        if(!isGrounded())
+        if(!IsGrounded())
         {
             _playerTrickController.Kickflip();
             return;
@@ -93,13 +92,23 @@ public class PlayerController : MonoBehaviour, IButtonListener
 
     }
 
-    public bool isGrounded()
+    // ReSharper disable Unity.PerformanceAnalysis
+    private bool IsGrounded()
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
+        RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
+        if (boxCast)
         {
+            if (boxCast.collider.GetComponent<GrindSurface>())
+            {
+                if (!_playerTrickController.IsGrinding)
+                {
+                    StartCoroutine(_playerTrickController.StartGrind());
+                }
+            }
             return true;
         }
-        
+        StopCoroutine(_playerTrickController.StartGrind());
+        _playerTrickController.StopGrind();
         return false;
     }
 

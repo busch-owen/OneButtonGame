@@ -141,7 +141,8 @@ GameObject:
   m_Component:
   - component: {fileID: 539135073400245909}
   - component: {fileID: 7847218283184492912}
-  m_Layer: 0
+  - component: {fileID: 8932929534526620661}
+  m_Layer: 3
   m_Name: grind surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,3 +209,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.18, y: 0.24}
   m_EdgeRadius: 0
+--- !u!114 &8932929534526620661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3746736971601635471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2145d0af27d0b1843ad3868390387477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
