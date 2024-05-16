@@ -9,8 +9,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] float jumpHeight = 10.0f;
     //raycast for grounded
     
-    [Space(10f)]
-    [Header("Ground Detection Attributes")]
+    [Space(10f), Header("Ground Detection Attributes")]
     [SerializeField] Vector2 boxSize;
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
@@ -93,13 +92,20 @@ public class PlayerController : MonoBehaviour, IButtonListener
 
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public bool isGrounded()
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer))
+        RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
+        if (boxCast)
         {
+            if (boxCast.collider.GetComponent<GrindSurface>())
+            {
+                StartCoroutine(_playerTrickController.StartGrind());
+            }
             return true;
         }
         
+        _playerTrickController.StopGrindParticles();
         return false;
     }
 
