@@ -35,13 +35,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     // Update is called once per frame
     private void Update()
     {
-        isGrounded();
-        _animationController.ChangeGroundState(isGrounded());
+        IsGrounded();
+        _animationController.ChangeGroundState(IsGrounded());
     }
     
     public void ButtonHeld(ButtonInfo heldInfo)
     {
-        if (isGrounded())
+        if (IsGrounded())
         {
             return;
         }
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         }
         
         //jump
-        if(!isGrounded())
+        if(!IsGrounded())
         {
             _playerTrickController.Kickflip();
             return;
@@ -93,19 +93,22 @@ public class PlayerController : MonoBehaviour, IButtonListener
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    public bool isGrounded()
+    private bool IsGrounded()
     {
         RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
         if (boxCast)
         {
             if (boxCast.collider.GetComponent<GrindSurface>())
             {
-                StartCoroutine(_playerTrickController.StartGrind());
+                if (!_playerTrickController.IsGrinding)
+                {
+                    StartCoroutine(_playerTrickController.StartGrind());
+                }
             }
             return true;
         }
-        
-        _playerTrickController.StopGrindParticles();
+        StopCoroutine(_playerTrickController.StartGrind());
+        _playerTrickController.StopGrind();
         return false;
     }
 

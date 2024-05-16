@@ -17,6 +17,8 @@ public class PlayerTrickController : MonoBehaviour
 
     private WaitForFixedUpdate _waitForFixedUpdate;
     
+    public bool IsGrinding { get; private set; }
+    
     private void Awake()
     {
         _animController = GetComponentInChildren<PlayerAnimationController>();
@@ -48,9 +50,9 @@ public class PlayerTrickController : MonoBehaviour
 
     public IEnumerator StartGrind()
     {
+        IsGrinding = true;
         while (true)
         {
-            Debug.Log("Grinding ;)");
             //Nothing here yet, but you'd just call an "AddScore" function or something of the sort to keep adding score while grinding.
             if (!grindParticles.isPlaying)
             {
@@ -60,8 +62,9 @@ public class PlayerTrickController : MonoBehaviour
         }
     }
 
-    public void StopGrindParticles()
+    public void StopGrind()
     {
+        IsGrinding = false;
         if (grindParticles.isPlaying)
         {
             grindParticles.Stop();
