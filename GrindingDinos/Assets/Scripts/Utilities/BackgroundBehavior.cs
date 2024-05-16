@@ -16,6 +16,7 @@ public class BackgroundBehavior : MonoBehaviour
     {
         startPosition = transform.position.x;
         tileLength = GetComponent<SpriteRenderer>().bounds.size.x;
+        gameManager = FindObjectOfType<GameManager>();
         //Debug.Log(tileLength);
     }
 

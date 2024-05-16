@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject deathMenu;
+    [SerializeField] private GameObject mainMenu;
 
     private void Awake()
     {
@@ -15,5 +16,10 @@ public class UIManager : MonoBehaviour
     {
         deathMenu?.SetActive(true);
         Debug.Log("you ded. Press space to restart");
+    }
+
+    public void CloseMainMenu()
+    {
+        mainMenu?.SetActive(false);
     }
 }

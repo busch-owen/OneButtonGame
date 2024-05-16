@@ -5,7 +5,7 @@ public class GameManager : Singleton<GameManager>
     private SceneController _sceneController;
     private UIManager _uiManager;
 
-    private void Awake()
+    private void Start()
     {
         _sceneController = FindObjectOfType<SceneController>();
         _uiManager = FindObjectOfType<UIManager>();
@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
     public void StartGame()
     {
         GameStarted = true;
+        _uiManager.CloseMainMenu();
     }
 
     public void DeathSequence()
