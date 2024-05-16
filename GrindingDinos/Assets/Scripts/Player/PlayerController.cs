@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
 
+    [Space(10f), Header("Effects")] 
+    [SerializeField] private ParticleSystem deathEffect;
+
     //Controllers and Managers
     private PlayerAnimationController _animationController;
     private PlayerTrickController _playerTrickController;
@@ -57,7 +60,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         if (other.gameObject.CompareTag("Obstacle"))
         {
             _gameManager.DeathSequence();
-            Debug.Log("I ded");
+            deathEffect.Play();
             _isDead = true;
         }
     }
