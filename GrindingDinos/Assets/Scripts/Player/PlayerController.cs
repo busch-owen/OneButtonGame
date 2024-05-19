@@ -51,6 +51,11 @@ public class PlayerController : MonoBehaviour, IButtonListener
         
         if (heldInfo.TimeHeld() >= _playerTrickController.ShuvitHoldTime)
         {
+            if (_playerTrickController.WillBail())
+            {
+                KillPlayer();
+                return;
+            }
             _playerTrickController.PopShuv();
         }
     }
@@ -59,9 +64,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
     {
         if (other.gameObject.CompareTag("Obstacle"))
         {
-            _gameManager.DeathSequence();
-            deathEffect.Play();
-            _isDead = true;
+            KillPlayer();
         }
     }
 
@@ -82,6 +85,11 @@ public class PlayerController : MonoBehaviour, IButtonListener
         //jump
         if(!IsGrounded())
         {
+            if (_playerTrickController.WillBail())
+            {
+                KillPlayer();
+                return;
+            }
             _playerTrickController.Kickflip();
             return;
         }
@@ -118,5 +126,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
+    }
+
+    private void KillPlayer()
+    {
+        Debug.Log("Killed Player");
+        _gameManager.DeathSequence();
+        deathEffect.Play();
+        _isDead = true;
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -9,17 +7,26 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        if (!deathMenu)
+            return;
+        
         deathMenu?.SetActive(false);
     }
     
     public void OpenDeathMenu()
     {
+        if (!deathMenu)
+            return;
+        
         deathMenu?.SetActive(true);
         Debug.Log("you ded. Press space to restart");
     }
 
     public void CloseMainMenu()
     {
+        if (!mainMenu)
+            return;
+        
         mainMenu?.SetActive(false);
     }
 }

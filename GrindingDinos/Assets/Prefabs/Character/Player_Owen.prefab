@@ -147,6 +147,11 @@ MonoBehaviour:
   shuvitScoreValue: 0
   <ShuvitHoldTime>k__BackingField: 0.1
   grindParticles: {fileID: 4541705891549201410}
+  boxSize: {x: 1, y: 1.5}
+  castDistance: 2.75
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &3541320054457714335
 GameObject:
   m_ObjectHideFlags: 0
