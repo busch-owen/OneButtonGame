@@ -7,8 +7,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        _sceneController = FindObjectOfType<SceneController>();
-        _uiManager = FindObjectOfType<UIManager>();
+        ResetGameState();
     }
 
     public void StartGame()
@@ -26,5 +25,13 @@ public class GameManager : Singleton<GameManager>
     {
         //All this will do for now is reload the scene, potentially we could add a high score system or something of the sort.
         _sceneController.ReloadCurrentScene();
+        Invoke(nameof(ResetGameState), 0.05f);
+    }
+
+    public void ResetGameState()
+    {
+        GameStarted = false;
+        _sceneController = FindObjectOfType<SceneController>();
+        _uiManager = FindObjectOfType<UIManager>();
     }
 }

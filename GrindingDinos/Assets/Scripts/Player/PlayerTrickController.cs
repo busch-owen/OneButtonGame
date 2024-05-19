@@ -25,10 +25,12 @@ public class PlayerTrickController : MonoBehaviour
     [SerializeField] float castDistance;
     [SerializeField] LayerMask groundLayer;
 
+    private PlayerController _playerController;
     
     private void Awake()
     {
         _animController = GetComponentInChildren<PlayerAnimationController>();
+        _playerController = GetComponent<PlayerController>();
     }
 
     //Logic for kickflip tricks

@@ -51,11 +51,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
         
         if (heldInfo.TimeHeld() >= _playerTrickController.ShuvitHoldTime)
         {
-            if (_playerTrickController.WillBail())
-            {
-                KillPlayer();
-                return;
-            }
             _playerTrickController.PopShuv();
         }
     }
@@ -85,11 +80,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
         //jump
         if(!IsGrounded())
         {
-            if (_playerTrickController.WillBail())
-            {
-                KillPlayer();
-                return;
-            }
             _playerTrickController.Kickflip();
             return;
         }
@@ -104,18 +94,25 @@ public class PlayerController : MonoBehaviour, IButtonListener
     }
 
     // ReSharper disable Unity.PerformanceAnalysis
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
         if (boxCast)
         {
-            if (boxCast.collider.GetComponent<GrindSurface>())
+            if (_playerTrickController.WillBail())
             {
-                if (!_playerTrickController.IsGrinding)
-                {
-                    StartCoroutine(_playerTrickController.StartGrind());
-                }
+                KillPlayer();
+                return false;
             }
+            
+            if (!boxCast.collider.GetComponent<GrindSurface>()) 
+                return true;
+            
+            if (!_playerTrickController.IsGrinding)
+            {
+                StartCoroutine(_playerTrickController.StartGrind());
+            }
+            
             return true;
         }
         StopCoroutine(_playerTrickController.StartGrind());

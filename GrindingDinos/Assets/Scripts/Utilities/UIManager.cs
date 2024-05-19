@@ -2,31 +2,26 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject deathMenu;
-    [SerializeField] private GameObject mainMenu;
+    private GameObject deathMenu;
+    private GameObject mainMenu;
 
     private void Awake()
     {
-        if (!deathMenu)
-            return;
+        deathMenu = GetComponentInChildren<DeathMenu>().gameObject;
+        mainMenu = GetComponentInChildren<MainMenu>().gameObject;
         
+        mainMenu?.SetActive(true);
         deathMenu?.SetActive(false);
     }
     
     public void OpenDeathMenu()
     {
-        if (!deathMenu)
-            return;
-        
         deathMenu?.SetActive(true);
         Debug.Log("you ded. Press space to restart");
     }
 
     public void CloseMainMenu()
     {
-        if (!mainMenu)
-            return;
-        
         mainMenu?.SetActive(false);
     }
 }
