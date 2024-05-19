@@ -1763,6 +1763,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7796632126669840241, guid: 89f7cc658b95add4b980ce847f34b551, type: 3}
+      propertyPath: castDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8146760007752751094, guid: 89f7cc658b95add4b980ce847f34b551, type: 3}
       propertyPath: m_Sprite
       value: 
