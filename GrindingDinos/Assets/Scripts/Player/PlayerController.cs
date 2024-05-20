@@ -101,8 +101,8 @@ public class PlayerController : MonoBehaviour, IButtonListener
         {
             if (_playerTrickController.WillBail())
             {
-                KillPlayer();
-                return false;
+                //KillPlayer();
+                //return false;
             }
             
             if (!boxCast.collider.GetComponent<GrindSurface>()) 

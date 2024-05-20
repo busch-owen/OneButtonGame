@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3389357734705052310}
   - component: {fileID: 5848547514263138091}
   - component: {fileID: 5449336183981238284}
+  - component: {fileID: 3658333480839783958}
   m_Layer: 0
   m_Name: binch
   m_TagString: Obstacle
@@ -131,6 +132,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.88, y: 1.81}
   m_EdgeRadius: 0
+--- !u!114 &3658333480839783958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825982736689758790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacb90018f4492d46996a5fabbaadae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
 --- !u!1 &3746736971601635471
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,7 @@ public class ObstacleMover : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //gameManager = FindObjectOfType<GameManager>();
     }
 
 
@@ -17,5 +17,10 @@ public class ObstacleMover : MonoBehaviour
     {
         if (gameManager.GameStarted == true)
         transform.position = new Vector3(transform.position.x + travelSpeed, transform.position.y, transform.position.z);
+    }
+
+    public void ObstacleCreated(GameManager gm)
+    {
+        gameManager = gm;
     }
 }

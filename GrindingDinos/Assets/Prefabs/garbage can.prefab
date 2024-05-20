@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8468406050390635887}
   - component: {fileID: 671479884731059996}
-  m_Layer: 0
+  - component: {fileID: 2133415231145476700}
+  m_Layer: 3
   m_Name: grind surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,6 +78,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.49, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &2133415231145476700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7958143609766093154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2145d0af27d0b1843ad3868390387477, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8247851565128997539
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,6 +101,7 @@ GameObject:
   - component: {fileID: 5086888237056613667}
   - component: {fileID: 3306501900701709864}
   - component: {fileID: 5506013043387544411}
+  - component: {fileID: 4271974797241971585}
   m_Layer: 0
   m_Name: garbage can
   m_TagString: Obstacle
@@ -208,3 +222,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.92, y: 1.52}
   m_EdgeRadius: 0
+--- !u!114 &4271974797241971585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8247851565128997539}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eacb90018f4492d46996a5fabbaadae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
