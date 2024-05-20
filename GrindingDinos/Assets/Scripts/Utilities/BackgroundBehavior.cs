@@ -6,10 +6,11 @@ public class BackgroundBehavior : MonoBehaviour
 {
     private float tileLength;
     private float startPosition;
-    private float travelSpeed = -0.1f;  //where should we be storing the player's current speed if it's going to increase as the game goes on?
+    public float travelSpeed = -0.1f;  //where should we be storing the player's current speed if it's going to increase as the game goes on?
     public float parallaxAmount;
     private float travelDistance;
     public GameManager gameManager;
+    public GameObject speedController;
 
 
     void Start()
@@ -26,6 +27,7 @@ public class BackgroundBehavior : MonoBehaviour
         //must get the player's travel speed
         if (gameManager.GameStarted == true)
         {
+            travelSpeed = speedController.GetComponent<SpeedController>().moveSpeed;
             travelDistance = travelDistance + (travelSpeed * parallaxAmount);
             if (travelDistance < -tileLength) //this is in negatives because the background is scrolling, not the player
             {

@@ -574,10 +574,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2122263663253295884, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+      propertyPath: speedController
+      value: 
+      objectReference: {fileID: 557599132}
     - target: {fileID: 3184070101836966033, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
       propertyPath: parallaxAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3184070101836966033, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+      propertyPath: speedController
+      value: 
+      objectReference: {fileID: 557599132}
     - target: {fileID: 3391827312509007261, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.34
@@ -618,6 +626,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4983651058914935121, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+      propertyPath: speedController
+      value: 
+      objectReference: {fileID: 557599132}
     - target: {fileID: 7913997336575011471, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
       propertyPath: m_Name
       value: Background
@@ -625,7 +637,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7913997336575011471, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 557599134}
   m_SourcePrefab: {fileID: 100100000, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
 --- !u!1 &554557165
 GameObject:
@@ -702,6 +717,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554557165}
   m_CullTransparentMesh: 1
+--- !u!1 &557599132 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7913997336575011471, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+  m_PrefabInstance: {fileID: 483775008}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &557599134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557599132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c5dd532c98cece4685ea3785b51af76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: -0.1
 --- !u!1 &736182166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1221,7 @@ MonoBehaviour:
   spawnTimerLow: 2
   spawnTimerHigh: 5
   gameManager: {fileID: 1537305744}
+  speedController: {fileID: 557599132}
 --- !u!4 &1195434715
 Transform:
   m_ObjectHideFlags: 0
