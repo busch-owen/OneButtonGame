@@ -13,6 +13,7 @@ public class Spawn : MonoBehaviour
     private float spawnTimer;
     public GameManager gameManager;
     public GameObject speedController;
+    public PlayerController playerController;
 
     private bool timerActive;
 
@@ -36,7 +37,7 @@ public class Spawn : MonoBehaviour
         yield return new WaitForSeconds(spawnTimer);
         int obstacleChosen = UnityEngine.Random.Range(0, obstacles.Count);
         GameObject newObstacle = Instantiate(obstacles[obstacleChosen], transform);
-        newObstacle.GetComponent<ObstacleMover>().ObstacleCreated(gameManager, speedController);
+        newObstacle.GetComponent<ObstacleMover>().ObstacleCreated(gameManager, speedController, playerController);
         timerActive = false;
     }
 }
