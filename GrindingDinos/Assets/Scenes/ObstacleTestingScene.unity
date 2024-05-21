@@ -1230,8 +1230,8 @@ MonoBehaviour:
   - {fileID: 1825982736689758790, guid: 7af3341453677bc4db288197d27273d0, type: 3}
   - {fileID: 8247851565128997539, guid: d6c6fac7744d26b41adc833b237ad257, type: 3}
   - {fileID: 2678989104707434394, guid: 6ce395888fc4c6b4bb3fd7ea7153de5f, type: 3}
-  spawnTimerLow: 1.1
-  spawnTimerHigh: 4.25
+  spawnTimerLow: 0.4
+  spawnTimerHigh: 3
   gameManager: {fileID: 1537305744}
   speedController: {fileID: 557599132}
   playerController: {fileID: 442348854}
