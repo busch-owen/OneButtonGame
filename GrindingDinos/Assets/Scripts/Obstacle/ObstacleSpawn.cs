@@ -18,7 +18,7 @@ public class Spawn : MonoBehaviour
 
     private void Start()
     {
-
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void FixedUpdate()

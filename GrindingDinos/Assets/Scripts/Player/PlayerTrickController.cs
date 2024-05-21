@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerTrickController : MonoBehaviour
 {
+    private ScoreHandler _scoreHandler;
+    
     [Header("Trick Stats")]
     [SerializeField] private float trickCooldownTime;
-    [SerializeField] float kickflipScoreValue, shuvitScoreValue;
+    [SerializeField] int kickflipScoreValue, shuvitScoreValue;
     [field: SerializeField] public float ShuvitHoldTime { get; private set; }
     
     //Other trick variables
@@ -31,6 +33,7 @@ public class PlayerTrickController : MonoBehaviour
     {
         _animController = GetComponentInChildren<PlayerAnimationController>();
         _playerController = GetComponent<PlayerController>();
+        _scoreHandler = FindObjectOfType<ScoreHandler>();
     }
 
     //Logic for kickflip tricks
@@ -38,6 +41,8 @@ public class PlayerTrickController : MonoBehaviour
     {
         if(!_canDoTrick)
             return;
+        
+        _scoreHandler.AddToTrickScore(kickflipScoreValue);
         
         _animController.PlayKickflipAnimation();
         _canDoTrick = false;
@@ -50,6 +55,8 @@ public class PlayerTrickController : MonoBehaviour
     {
         if(!_canDoTrick)
             return;
+        
+        _scoreHandler.AddToTrickScore(shuvitScoreValue);
         
         _animController.PlayShuvitAnimation();
         _canDoTrick = false;
