@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 
 public class Spawn : MonoBehaviour
 {
-
     public List<GameObject> obstacles = new List<GameObject>();
     public float spawnTimerLow;
     public float spawnTimerHigh;
@@ -17,9 +16,10 @@ public class Spawn : MonoBehaviour
 
     private bool timerActive;
 
-    private void Start()
+    void Awake()
     {
-
+        timerActive = false;
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void FixedUpdate()
