@@ -21,11 +21,6 @@ public class PlayerTrickController : MonoBehaviour
     private WaitForFixedUpdate _waitForFixedUpdate;
     
     public bool IsGrinding { get; private set; }
-    
-    [Space(10f), Header("Ground Detection Attributes")]
-    [SerializeField] Vector2 boxSize;
-    [SerializeField] float castDistance;
-    [SerializeField] LayerMask groundLayer;
 
     private PlayerController _playerController;
     
@@ -90,22 +85,5 @@ public class PlayerTrickController : MonoBehaviour
     private void AllowTricks()
     {
         _canDoTrick = true;
-    }
-    
-    public bool WillBail()
-    {
-        RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
-        if (boxCast)
-        {
-            Debug.Log("You will bail");
-            return true;
-        }
-        Debug.Log("Nahh you good!");
-        return false;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireCube(transform.position - transform.up * castDistance, boxSize);
     }
 }

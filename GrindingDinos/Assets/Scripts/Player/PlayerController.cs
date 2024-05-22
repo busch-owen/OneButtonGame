@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IButtonListener
@@ -99,12 +98,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
         RaycastHit2D boxCast = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, castDistance, groundLayer);
         if (boxCast)
         {
-            if (_playerTrickController.WillBail())
-            {
-                //KillPlayer();
-                //return false;
-            }
-
             if (boxCast.collider.GetComponent<GrindSurface>())
             {
                 if (!_playerTrickController.IsGrinding)

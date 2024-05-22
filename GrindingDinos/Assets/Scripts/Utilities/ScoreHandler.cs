@@ -20,7 +20,6 @@ public class ScoreHandler : Singleton<ScoreHandler>
 
     public override void Awake()
     {
-        base.Awake();
         _gameManager = FindObjectOfType<GameManager>();
         _uiManager = FindObjectOfType<UIManager>();
         _speedController = FindObjectOfType<SpeedController>();
@@ -61,7 +60,7 @@ public class ScoreHandler : Singleton<ScoreHandler>
         _uiManager.UpdateTotalScore(_totalScore);
     }
 
-    public void UpdateHighScore()
+    private void UpdateHighScore()
     {
         if (_totalScore > _highScore)
         {
