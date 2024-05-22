@@ -143,8 +143,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trickCooldownTime: 0.75
-  kickflipScoreValue: 1000
-  shuvitScoreValue: 1000
+  kickflipScoreValue: 40
+  shuvitScoreValue: 30
   <ShuvitHoldTime>k__BackingField: 0.1
   grindParticles: {fileID: 4541705891549201410}
   boxSize: {x: 1, y: 1.5}

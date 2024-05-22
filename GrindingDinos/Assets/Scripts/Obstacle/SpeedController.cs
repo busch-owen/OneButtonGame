@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,22 +6,19 @@ using UnityEngine;
 public class SpeedController : MonoBehaviour
 {
     public float moveSpeed = -0.1f;
-    // Start is called before the first frame update
-    void Start()
+
+    [SerializeField] private float increaseRate;
+
+    private ScoreHandler _scoreHandler;
+
+    private void Awake()
     {
-        StartCoroutine(SpeedupTimer());
+        _scoreHandler = FindObjectOfType<ScoreHandler>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SpeedupTimer()
     {
-        
-    }
-
-    IEnumerator SpeedupTimer()
-    {
-        yield return new WaitForSeconds(10);
-        moveSpeed = moveSpeed - 0.05f;
-        StartCoroutine(SpeedupTimer());
+        moveSpeed *= increaseRate;
+        _scoreHandler.MultiplyTickRate(increaseRate);
     }
 }

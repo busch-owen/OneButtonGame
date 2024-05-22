@@ -104,15 +104,18 @@ public class PlayerController : MonoBehaviour, IButtonListener
                 //KillPlayer();
                 //return false;
             }
-            
-            if (!boxCast.collider.GetComponent<GrindSurface>()) 
-                return true;
-            
-            if (!_playerTrickController.IsGrinding)
+
+            if (boxCast.collider.GetComponent<GrindSurface>())
             {
-                StartCoroutine(_playerTrickController.StartGrind());
+                if (!_playerTrickController.IsGrinding)
+                {
+                    StartCoroutine(_playerTrickController.StartGrind());
+                }
+
+                return true;
             }
-            
+            StopCoroutine(_playerTrickController.StartGrind());
+            _playerTrickController.StopGrind();
             return true;
         }
         StopCoroutine(_playerTrickController.StartGrind());

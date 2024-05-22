@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
     private GameObject deathMenu;
     private GameObject mainMenu;
 
-    [SerializeField] private TMP_Text distanceScoreText, trickScoreText;
+    [SerializeField] private TMP_Text distanceScoreText, trickScoreText, totalScoreText, highScoreText;
 
     private void Awake()
     {
@@ -19,12 +19,22 @@ public class UIManager : MonoBehaviour
 
     public void UpdateDistanceScore(int newValue)
     {
-        distanceScoreText.text = "Distance: " + newValue + "m";
+        distanceScoreText.text = $"Distance: {newValue}m";
     }
     
     public void UpdateTrickScore(int newValue)
     {
-        trickScoreText.text = "Trick Score: " + newValue;
+        trickScoreText.text = $"Trick Score: {newValue}";
+    }
+
+    public void UpdateTotalScore(int newValue)
+    {
+        totalScoreText.text = $"You got a total score of: {newValue}";
+    }
+
+    public void PostHighScore(int newValue)
+    {
+        highScoreText.text = $"High Score: {newValue}";
     }
     
     public void OpenDeathMenu()

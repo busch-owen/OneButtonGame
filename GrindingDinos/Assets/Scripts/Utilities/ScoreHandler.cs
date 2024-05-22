@@ -9,15 +9,21 @@ public class ScoreHandler : Singleton<ScoreHandler>
     private int _trickScore;
     private int _totalScore;
 
-    private int _highScore;
+    private static int _highScore;
 
     [SerializeField] private int scoreTick;
-    [SerializeField] private int scoreTickRate;
+    [SerializeField] private float scoreTickRate;
+
+    [SerializeField] private float scoreGoalThreshold;
+
+    private SpeedController _speedController;
 
     public override void Awake()
     {
+        base.Awake();
         _gameManager = FindObjectOfType<GameManager>();
         _uiManager = FindObjectOfType<UIManager>();
+        _speedController = FindObjectOfType<SpeedController>();
     }
     
     public void AddToTrickScore(int scoreValue)
@@ -32,9 +38,10 @@ public class ScoreHandler : Singleton<ScoreHandler>
         _uiManager.UpdateDistanceScore(_distanceScore);
 
         _totalScore = _distanceScore + _trickScore;
-        if (_totalScore > _highScore)
+        UpdateHighScore();
+        if (_distanceScore >= scoreGoalThreshold)
         {
-            _highScore = _totalScore;
+            _speedController.SpeedupTimer();
         }
     }
 
@@ -49,9 +56,30 @@ public class ScoreHandler : Singleton<ScoreHandler>
         CancelInvoke(nameof(AddToDistanceScore));
     }
 
+    public void PostTotalScore()
+    {
+        _uiManager.UpdateTotalScore(_totalScore);
+    }
+
+    public void UpdateHighScore()
+    {
+        if (_totalScore > _highScore)
+        {
+            _highScore = _totalScore;
+        }
+    }
+
+    public void MultiplyTickRate(float rate)
+    {
+        scoreTickRate *= rate;
+        scoreGoalThreshold *= rate;
+        StartTickingScoreCounter();
+    }
+        
     public void ResetCurrentScores()
     {
         _trickScore = 0;
         _distanceScore = 0;
+        _uiManager.PostHighScore(_highScore);
     }
 }
