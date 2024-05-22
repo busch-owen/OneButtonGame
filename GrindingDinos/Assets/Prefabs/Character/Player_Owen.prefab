@@ -85,6 +85,13 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   deathEffect: {fileID: 6431795770800614948}
+  _audioSource: {fileID: 0}
+  jumpSFX: {fileID: 8300000, guid: 1f15e7dc7533cc34492c981b6603695e, type: 3}
+  deathSFXs:
+  - {fileID: 8300000, guid: 18feb3498ba8cc04ca4a8de618a8967f, type: 3}
+  - {fileID: 8300000, guid: a97d1e65bbf36b84c9a0ebc4e0119985, type: 3}
+  deathCrunch: {fileID: 8300000, guid: 25fae0e6a035adf40b18cdb872ea1c3b, type: 3}
+  skateboardNoises: {fileID: 8300000, guid: d3dfaf757d4c15143b4dae9948889d85, type: 3}
 --- !u!61 &6042124722356300334
 BoxCollider2D:
   m_ObjectHideFlags: 0
