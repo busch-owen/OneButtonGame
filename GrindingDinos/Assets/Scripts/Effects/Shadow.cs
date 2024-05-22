@@ -24,6 +24,6 @@ public class Shadow : MonoBehaviour
         distance = Mathf.Clamp(distance, minSize, maxSize);
         var newSize = maxSize / distance;
         transform.localScale = new Vector3(newSize, newSize, newSize);
-        _position = new Vector2(_player.transform.position.x, _position.y);
+        transform.position = new Vector2(_player.transform.position.x, _position.y);
     }
 }
