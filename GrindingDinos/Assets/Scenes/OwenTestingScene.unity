@@ -1021,6 +1021,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 8256356818251280860, guid: 883cc7b9ef14645468ed1414415b32ed, type: 3}
+      propertyPath: increaseRate
+      value: 1.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2397,7 +2401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreTick: 1
-  scoreTickRate: 0.1
+  distanceScoreTickRate: 0.1
   scoreGoalThreshold: 100
 --- !u!4 &2028816198
 Transform:

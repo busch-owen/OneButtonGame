@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeedController : MonoBehaviour
 {
     public float moveSpeed = -0.1f;
 
-    [SerializeField] private float increaseRate;
+    [SerializeField] private float speedIncreaseRate;
+    [SerializeField] private float thresholdIncreaseRate;
 
     private ScoreHandler _scoreHandler;
 
@@ -18,7 +16,8 @@ public class SpeedController : MonoBehaviour
 
     public void SpeedupTimer()
     {
-        moveSpeed *= increaseRate;
-        _scoreHandler.MultiplyTickRate(increaseRate);
+        moveSpeed /= speedIncreaseRate;
+        Debug.Log("Multiplied");
+        _scoreHandler.MultiplyTickRate(speedIncreaseRate, thresholdIncreaseRate);
     }
 }

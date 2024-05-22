@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ScoreHandler : Singleton<ScoreHandler>
 {
@@ -12,7 +13,7 @@ public class ScoreHandler : Singleton<ScoreHandler>
     private static int _highScore;
 
     [SerializeField] private int scoreTick;
-    [SerializeField] private float scoreTickRate;
+    [SerializeField] private float distanceScoreTickRate;
 
     [SerializeField] private float scoreGoalThreshold;
 
@@ -31,14 +32,14 @@ public class ScoreHandler : Singleton<ScoreHandler>
         _uiManager.UpdateTrickScore(_trickScore);
     }
 
-    public void AddToDistanceScore()
+    private void AddToDistanceScore()
     {
         _distanceScore += scoreTick;
         _uiManager.UpdateDistanceScore(_distanceScore);
 
         _totalScore = _distanceScore + _trickScore;
         UpdateHighScore();
-        if (_distanceScore >= scoreGoalThreshold)
+        if (_distanceScore > scoreGoalThreshold)
         {
             _speedController.SpeedupTimer();
         }
@@ -46,8 +47,7 @@ public class ScoreHandler : Singleton<ScoreHandler>
 
     public void StartTickingScoreCounter()
     {
-        CancelInvoke(nameof(AddToDistanceScore));
-        InvokeRepeating(nameof(AddToDistanceScore), 0, scoreTickRate);
+        InvokeRepeating(nameof(AddToDistanceScore), 0.01f, distanceScoreTickRate);
     }
 
     public void StopTickingScoreCounter()
@@ -68,10 +68,11 @@ public class ScoreHandler : Singleton<ScoreHandler>
         }
     }
 
-    public void MultiplyTickRate(float rate)
+    public void MultiplyTickRate(float speedRate, float thresRate)
     {
-        scoreTickRate *= rate;
-        scoreGoalThreshold *= rate;
+        distanceScoreTickRate *= speedRate;
+        scoreGoalThreshold *= thresRate;
+        StopTickingScoreCounter();
         StartTickingScoreCounter();
     }
         

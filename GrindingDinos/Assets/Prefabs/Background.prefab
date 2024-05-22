@@ -693,7 +693,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: -0.1
-  increaseRate: 1.15
+  speedIncreaseRate: 0.8
+  thresholdIncreaseRate: 1.8
 --- !u!1 &8514152923039073800
 GameObject:
   m_ObjectHideFlags: 0
