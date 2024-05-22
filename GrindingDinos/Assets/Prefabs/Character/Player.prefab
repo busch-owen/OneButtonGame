@@ -75,11 +75,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 5674228518898192428}
+  jumpHeight: 10
   boxSize: {x: 4, y: 0.2}
   castDistance: 2
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  deathEffect: {fileID: 0}
+  jumpSFX: {fileID: 8300000, guid: 1f15e7dc7533cc34492c981b6603695e, type: 3}
+  deathSFXs: []
+  deathCrunch: {fileID: 8300000, guid: 25fae0e6a035adf40b18cdb872ea1c3b, type: 3}
+  skateboardNoises: {fileID: 8300000, guid: d3dfaf757d4c15143b4dae9948889d85, type: 3}
 --- !u!61 &1137892431813634758
 BoxCollider2D:
   m_ObjectHideFlags: 0

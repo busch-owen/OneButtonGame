@@ -17,6 +17,15 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [Space(10f), Header("Effects")] 
     [SerializeField] private ParticleSystem deathEffect;
 
+    [Space(10f), Header("Audio")]
+    private AudioSource _audioSource;
+    [SerializeField] AudioClip jumpSFX;
+    [SerializeField] AudioClip[] deathSFXs;
+    private AudioClip _deathSFX;
+    [SerializeField] AudioClip deathCrunch;
+    [SerializeField] AudioClip skateboardNoises;
+    float SFXVolume = .75f;
+
     //Controllers and Managers
     private PlayerAnimationController _animationController;
     private PlayerTrickController _playerTrickController;
@@ -33,6 +42,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         _animationController = GetComponentInChildren<PlayerAnimationController>();
         var inputListener = FindObjectOfType<PlayerInputs>();
         inputListener.RegisterListener(this);
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -85,6 +95,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
         }
         
         _animationController.PlayJumpAnimation();
+        _audioSource.PlayOneShot(jumpSFX, SFXVolume);
         rigidBody.velocity = new Vector2(0.0f, jumpHeight);
     }
 
@@ -130,6 +141,13 @@ public class PlayerController : MonoBehaviour, IButtonListener
         Debug.Log("Killed Player");
         _gameManager.DeathSequence();
         deathEffect.Play();
+        
+        //audio jank
+        _audioSource.PlayOneShot(deathCrunch, SFXVolume);
+        int rand = UnityEngine.Random.Range(0, deathSFXs.Length);
+        _deathSFX = deathSFXs[rand];
+        _audioSource.PlayOneShot(_deathSFX, SFXVolume);
+
         _isDead = true;
     }
 }
