@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour, IButtonListener
     [SerializeField] private ParticleSystem deathEffect;
 
     [Space(10f), Header("Audio")]
-    private AudioSource _audioSource;
+    [SerializeField] private AudioSource _audioSource;
     [SerializeField] AudioClip jumpSFX;
     [SerializeField] AudioClip[] deathSFXs;
     private AudioClip _deathSFX;
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour, IButtonListener
         _animationController = GetComponentInChildren<PlayerAnimationController>();
         var inputListener = FindObjectOfType<PlayerInputs>();
         inputListener.RegisterListener(this);
-        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
