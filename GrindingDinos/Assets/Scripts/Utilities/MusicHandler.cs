@@ -7,30 +7,35 @@ public class MusicHandler : MonoBehaviour
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] AudioClip[] musicList;
     AudioClip currentSong;
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Awake()
     {
-        _musicSource.loop = false;
+        int rand = Random.Range(0, musicList.Length);
+        currentSong = musicList[rand];
+        _musicSource.clip = currentSong;
         _musicSource.Play();
+        _musicSource.loop = false;
     }
-
-
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!_musicSource.isPlaying)
         {
-            StartCoroutine(ChangeSong());
+            //StartCoroutine(ChangeSong());
+            int rand = Random.Range(0, musicList.Length);
+            currentSong = musicList[rand];
+            _musicSource.clip = currentSong;
+            _musicSource.Play();
         }
         else
             return;
     }
-    IEnumerator ChangeSong()
+    /*IEnumerator ChangeSong()
     {
         yield return new WaitForSeconds(2f);
         int rand = Random.Range(0, musicList.Length);
         currentSong = musicList[rand];
         _musicSource.clip = currentSong;
         _musicSource.Play();
-    }
+    }*/
 }
