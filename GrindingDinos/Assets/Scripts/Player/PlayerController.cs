@@ -102,16 +102,14 @@ public class PlayerController : MonoBehaviour, IButtonListener
             {
                 if (!_playerTrickController.IsGrinding)
                 {
-                    StartCoroutine(_playerTrickController.StartGrind());
+                    _playerTrickController.StartGrind();
                 }
 
                 return true;
             }
-            StopCoroutine(_playerTrickController.StartGrind());
             _playerTrickController.StopGrind();
             return true;
         }
-        StopCoroutine(_playerTrickController.StartGrind());
         _playerTrickController.StopGrind();
         return false;
     }

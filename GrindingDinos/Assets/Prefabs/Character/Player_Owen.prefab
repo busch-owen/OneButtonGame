@@ -145,13 +145,10 @@ MonoBehaviour:
   trickCooldownTime: 0.75
   kickflipScoreValue: 40
   shuvitScoreValue: 30
-  <ShuvitHoldTime>k__BackingField: 0.1
+  grindScoreTickValue: 1
+  grindScoreTickRate: 0.05
+  <ShuvitHoldTime>k__BackingField: 0.15
   grindParticles: {fileID: 4541705891549201410}
-  boxSize: {x: 1, y: 1.5}
-  castDistance: 2.75
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &3541320054457714335
 GameObject:
   m_ObjectHideFlags: 0

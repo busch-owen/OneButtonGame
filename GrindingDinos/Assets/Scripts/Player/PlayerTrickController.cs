@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerTrickController : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class PlayerTrickController : MonoBehaviour
     
     [Header("Trick Stats")]
     [SerializeField] private float trickCooldownTime;
-    [SerializeField] int kickflipScoreValue, shuvitScoreValue;
+
+    [SerializeField] private int kickflipScoreValue, shuvitScoreValue, grindScoreTickValue;
+    [SerializeField] private float grindScoreTickRate;
     [field: SerializeField] public float ShuvitHoldTime { get; private set; }
     
     //Other trick variables
@@ -59,22 +63,24 @@ public class PlayerTrickController : MonoBehaviour
         //At the moment this is all this script does, once a score system is in place I will come back and add scoring functionality to this section
     }
 
-    public IEnumerator StartGrind()
+    public void StartGrind()
     {
         IsGrinding = true;
-        while (true)
+        InvokeRepeating(nameof(Grinding), 0, grindScoreTickRate);
+    }
+
+    public void Grinding()
+    {
+        if (!grindParticles.isPlaying)
         {
-            //Nothing here yet, but you'd just call an "AddScore" function or something of the sort to keep adding score while grinding.
-            if (!grindParticles.isPlaying)
-            {
-                grindParticles.Play();
-            }
-            yield return _waitForFixedUpdate;
+            grindParticles.Play();
         }
+        _scoreHandler.AddToTrickScore(grindScoreTickValue);
     }
 
     public void StopGrind()
     {
+        CancelInvoke(nameof(Grinding));
         IsGrinding = false;
         if (grindParticles.isPlaying)
         {
